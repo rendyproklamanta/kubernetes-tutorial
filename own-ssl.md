@@ -5,13 +5,13 @@
 - After that, download certificate result from SSL provider
 - If no bundle crt, combine it using cat:
 ```
-cat yourdomain.crt intermediate.crt > yourdomain-bundle.crt
+cat cert.crt root.crt intermediate.crt > bundle.crt
 ```
 - Create secret TLS with namespace (my-app)
 ```
 > get copy of your private.key from csrgenerator.com
 
-kubectl create secret tls wildcard.mydomain-tls --cert=yourdomain-bundle.crt --key=private.key -n myapp
+kubectl create secret tls wildcard.mydomain-tls --cert=bundle.crt --key=private.key -n myapp
 ```
 
 - Add your secret tls to ingress.yaml
@@ -19,5 +19,5 @@ kubectl create secret tls wildcard.mydomain-tls --cert=yourdomain-bundle.crt --k
   tls:
     - hosts:
         - "*.mydomain.com"
-      secretName: wildcard.mydomain.com-tls
+      secretName: wildcard.mydomain-tls
 ```
