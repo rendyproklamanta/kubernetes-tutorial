@@ -1,0 +1,46 @@
+variables:
+  DEPLOY_NAME: $DEPLOY_NAME # myapp-api
+  NAMESPACE: $NAMESPACE # myapp
+  RUNNER_TAGS: $RUNNER_TAGS # runner-name
+
+workflow:
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == "main"'
+      variables:
+        DEPLOY_ENVIRONMENT: "production" # Set variable for DEPLOY_ENVIRONMENT
+    - if: '$CI_COMMIT_REF_NAME == "staging"'
+      variables:
+        DEPLOY_ENVIRONMENT: "staging" # Set variable for DEPLOY_ENVIRONMENT
+        
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  environment: $DEPLOY_ENVIRONMENT
+  variables:
+    GIT_STRATEGY: clone
+  image: docker
+  services:
+    - name: docker:dind
+  hooks:
+    pre_get_sources_script:
+      - sudo usermod -a -G docker gitlab-runner
+      - sudo mkdir -p $CI_BUILDS_DIR
+      - sudo chown -R gitlab-runner:gitlab-runner $CI_BUILDS_DIR
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  script:
+    - docker --version
+    - docker pull $CI_REGISTRY_IMAGE:$DEPLOY_ENVIRONMENT || true
+    - docker build --cache-from $CI_REGISTRY_IMAGE:$DEPLOY_ENVIRONMENT --tag $CI_REGISTRY_IMAGE:$DEPLOY_ENVIRONMENT -f Dockerfile.$DEPLOY_ENVIRONMENT .
+    - docker push $CI_REGISTRY_IMAGE:$DEPLOY_ENVIRONMENT
+    - docker system prune --all --force --filter "until=48h"
+
+deploy:
+  stage: deploy
+  image: bitnami/kubectl:latest
+  script:
+    - kubectl apply -k k8s/${DEPLOY_ENVIRONMENT}
+    - kubectl rollout restart deploy ${DEPLOY_NAME} -n ${NAMESPACE}

@@ -2,8 +2,10 @@
 
 - [How to use kubectl](kubectl.md)
 
-- [Deploy traefik, SSL and sample app](https://github.com/rendyproklamanta/kubernetes-traefik)
+- [Deploy traefik + SSL](https://github.com/rendyproklamanta/kubernetes-traefik)
 
 - [Use your own / custom SSL](own-ssl.md)
 
-- [How to deploy using gitlab](deployment/gitlab.md)
+- [Deploy sample app](https://github.com/rendyproklamanta/kubernetes-deployment)
+
+- [How to deploy using gitlab](ci-cd/gitlab.md)
