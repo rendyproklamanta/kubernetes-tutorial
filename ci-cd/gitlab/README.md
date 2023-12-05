@@ -1,12 +1,20 @@
 # Deploy using gitlab registry
-- Make sure you installed docker and kubectl in your runner
 
-- Create token:
-https://gitlab.com/{project-path}/settings/access_tokens
+## Variable
+- Assign variable for kubernetes
 
-- Create secret:
+## Runner
+- Assign runner for kubernetes
+
+## Deploy token
+- Click project repo
+- Setting > Repository (in left sidebar)
+- Create deploy token
+- Checklist all
+- Run in kubectl to create secret
+
 ```
-kubectl create secret docker-registry gitlab-token --docker-server=https://registry.gitlab.com --docker-username=<username> --docker-password="<personal access token>" -n <my-app>
+kubectl create secret docker-registry gitlab-token --docker-server="repo.domain.com:5050" --docker-username="<deploy-token-name>" --docker-password="<deploy-token-pass>" -n <namespace>
 ```
 
 - Create environment variable:

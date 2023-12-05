@@ -10,4 +10,4 @@
 
 - [Deploy sample app](https://github.com/rendyproklamanta/kubernetes-deployment)
 
-- [How to deploy using gitlab](ci-cd/gitlab.md)
+- [How to deploy using gitlab](ci-cd/gitlab/README.md)
