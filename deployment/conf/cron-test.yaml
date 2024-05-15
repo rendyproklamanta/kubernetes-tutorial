@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cron-test # <=== Need to change name
+  namespace: movinite
+spec:
+  #---------------,------ MINUTE (0 - 59)
+  #--------------/ ,----- HOUR (0 - 23)
+  #-------------/ / ,---- DAY OF MONTH (1 - 31)
+  #------------/ / / ,--- MONTH (1 - 12)
+  #-----------/ / / / ,-- DAY OF WEEK (0 - 7) (Sunday=0 or 7)
+  #----------/ / / / /
+  schedule: "*/2 * * * *" # <=== Need to change time
+  timeZone: "Asia/Jakarta"
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          imagePullSecrets:
+            - name: gitlab-token
+          containers:
+            - name: cron-test # <=== Need to change name
+              image: repo.cic-webpro.com:5050/project/movinite/web:production
+              command: ["/usr/local/bin/php"]
+              args: ["/var/www/html/index.php", "cron/test"] # <=== Need to change | controller_name/function_name
+          restartPolicy: OnFailure
+
+# Commands :
+# kubectl -n <namespace> get jobs 
+# kubectl -n <namespace> logs -l job-name=<cron_name>
+# kubectl -n <namespace> get cronjobs
+# kubectl -n <namespace> delete cronjob <cron_name>
