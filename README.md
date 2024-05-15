@@ -1,15 +1,15 @@
-## List of tutorial and tips trick using Kubernetes
+# List of tutorial and tips trick using Kubernetes
 
-- [List of kubectl commands](md/commands.md)
+- [List of kubectl commands](docs/commands.md)
 
-- [How to use kubectl](md/kubectl.md)
+- [How to use kubectl](docs/kubectl.md)
 
-- [Install metric server](md/install-metric.md)
+- [Install metric server](docs/install-metric.md)
 
 - [Deploy traefik + SSL](https://github.com/rendyproklamanta/kubernetes-traefik)
 
-- [Use your own / custom SSL](md/own-ssl.md)
+- [Use your own / custom SSL](docs/own-ssl.md)
 
-- [Deploy sample app](md/deployment)
+- [Deploy sample app](docs/deployment)
 
 - [How to deploy using gitlab](ci-cd/gitlab/README.md)

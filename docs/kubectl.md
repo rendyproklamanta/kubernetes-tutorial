@@ -9,14 +9,23 @@
 cd /path/kubeconfig
 
 # Export all yaml to the environment KUBECONFIG:
-- $env:KUBECONFIG="cluster1.yaml;cluster2.yaml"
-- kubectl config view --raw > C:\Users\User\.kube\config # <- your .kube directory
+$env:KUBECONFIG="cluster1.yaml;cluster2.yaml"
+kubectl config view --raw > C:\Users\User\.kube\config # <- your .kube directory
 ```
 
-- Use context your cluster\
+- Use context your cluster
 
 ```shell
 kubectl config get-contexts 
 kubectl config use-context {context_name}
 kubectl get node
+```
+
+- Cron command list
+
+```shell
+kubectl -n <namespace> get jobs 
+kubectl -n <namespace> logs -l job-name=<cron_name>
+kubectl -n <namespace> get cronjobs
+kubectl -n <namespace> delete cronjob <cron_name>
 ```

@@ -4,6 +4,7 @@
 - Setting > Repository (in left sidebar)
 - Create deploy token
 - Checklist all
+- Copy deploy token
 - Run in kubectl
 
 ```shell
