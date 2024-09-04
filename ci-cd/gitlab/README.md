@@ -14,7 +14,7 @@
 - Run in kubectl to create secret
 
 ```
-kubectl create secret docker-registry gitlab-token --docker-server="repo.domain.com:5050" --docker-username="<deploy-token-name>" --docker-password="<deploy-token-pass>" -n <namespace>
+kubectl create secret docker-registry <app-production-token> --docker-server="<repo.domain.com:5050>" --docker-username="<deploy-token-name>" --docker-password="<deploy-token-pass>" -n <namespace>
 ```
 
 - Create environment variable:
