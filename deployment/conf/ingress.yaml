@@ -5,22 +5,34 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     traefik.ingress.kubernetes.io/router.middlewares: traefik-network-redirect@kubernetescrd,traefik-network-security@kubernetescrd
-  name: myphp-ingress
-  namespace: myapp-php
+  name: myapp-ingress
+  namespace: myapp-production
 
 spec:
   rules:
-    - host: "php.domain.com"
+    - host: "domain.com"
       http:
         paths:
           - backend:
               service:
-                name: myphp-service
+                name: myapp-service
                 port:
                   number: 80
             path: /
             pathType: Prefix
+    - host: "staging.domain.com"
+      http:
+        paths:
+          - backend:
+              service:
+                name: myapp-service
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
+
   tls:
     - hosts:
-        - "php.domain.com"
+        - "domain.com"
+        - "staging.domain.com"
       secretName: domain.com-tls

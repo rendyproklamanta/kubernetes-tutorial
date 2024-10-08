@@ -1,8 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myphp-deployment
-  namespace: myapp-php
+  name: myapp-deployment
+  namespace: myapp-production
 spec:
   replicas: 1
   strategy:
@@ -12,20 +12,23 @@ spec:
       maxUnavailable: 0
   selector:
     matchLabels:
-      app: myphp-deployment
+      app: myapp-deployment
   template:
     metadata:
       labels:
-        app: myphp-deployment
+        app: myapp-deployment
     spec:
-      # imagePullSecrets:
-      #   - name: gitlab-token
+      imagePullSecrets:
+        - name: myapp-production-token
       containers:
-        - name: myphp-deployment
+        - name: myapp-deployment
+          envFrom:
+            - secretRef: 
+                name: myapp-production-env
           image: docker.io/randyproxz/php:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 80
-          imagePullPolicy: Always
           resources:
             requests:
               memory: 50Mi

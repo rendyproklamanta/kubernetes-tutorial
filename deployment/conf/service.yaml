@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-   name: myphp-service
-   namespace: myapp-php
+   name: myapp-service
+   namespace: myapp-production
 
 spec:
    selector:
-      app: myphp-deployment
+      app: myapp-deployment
    ports:
       - name: http
         port: 80

@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: cron-test # <=== Need to change name
-  namespace: movinite
+  namespace: myapp-production
 spec:
   #---------------,------ MINUTE (0 - 59)
   #--------------/ ,----- HOUR (0 - 23)
@@ -13,15 +13,19 @@ spec:
   schedule: "*/2 * * * *" # <=== Need to change time
   timeZone: "Asia/Jakarta"
   concurrencyPolicy: Forbid
+  suspend: true  # <=== Set to true will disable this cronjob
   jobTemplate:
     spec:
       template:
         spec:
           imagePullSecrets:
-            - name: gitlab-token
+            - name: myapp-production-token
           containers:
             - name: cron-test # <=== Need to change name
-              image: repo.cic-webpro.com:5050/project/movinite/web:production
+              envFrom:
+                - secretRef: 
+                    name: myapp-production-env
+              image: repo.cic-webpro.com:5050/project/myapp-production/web:production
               command: ["/usr/local/bin/php"]
               args: ["/var/www/html/index.php", "cron/test"] # <=== Need to change | controller_name/function_name
           restartPolicy: OnFailure

@@ -1,6 +1,6 @@
-# List of tutorial and tips trick using Kubernetes
+# List of commands and tutorials
 
-- [List of kubectl commands](docs/commands.md)
+- [kubectl basic commands](docs/commands.md)
 
 - [How to use kubectl](docs/kubectl.md)
 
@@ -13,3 +13,7 @@
 - [Deploy sample app](docs/deployment)
 
 - [How to deploy using gitlab](ci-cd/gitlab/README.md)
+
+- [Pod Commands](docs/pod.md)
+
+- [Secret Commands](docs/secret.md)

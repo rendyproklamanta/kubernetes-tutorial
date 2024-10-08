@@ -1,4 +1,4 @@
-# Useful Commands
+# Basic Commands
 
 - Get with namespace
 
