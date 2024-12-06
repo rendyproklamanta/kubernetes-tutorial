@@ -29,9 +29,3 @@ spec:
               command: ["/usr/local/bin/php"]
               args: ["/var/www/html/index.php", "cron/test"] # <=== Need to change | controller_name/function_name
           restartPolicy: OnFailure
-
-# Commands :
-# kubectl -n <namespace> get jobs 
-# kubectl -n <namespace> logs -l job-name=<cron_name>
-# kubectl -n <namespace> get cronjobs
-# kubectl -n <namespace> delete cronjob <cron_name>

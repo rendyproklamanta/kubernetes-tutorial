@@ -17,3 +17,5 @@
 - [Pod Commands](docs/pod.md)
 
 - [Secret Commands](docs/secret.md)
+
+- [Cron Commands](docs/cron.md)
