@@ -21,11 +21,11 @@ kubectl --kubeconfig="file.yaml" create job --from=cronjob/cron-name cron-name-d
 
 ```sh
 kubectl --kubeconfig="file.yaml" get pods -l job-name=cron-name-debug -n <namespace>
-kubectl --kubeconfig="file.yaml" logs cron-name-debug-cdfc7 -n <namespace>
+kubectl --kubeconfig="file.yaml" logs cron-name-debug-xyz -n <namespace>
 ```
 
 - Delete cron debug if no longer needed
 
 ```sh
-kubectl --kubeconfig="file.yaml" delete job cron-name-debug -n movinite
+kubectl --kubeconfig="file.yaml" delete job cron-name-debug -n <namespace>
 ```
