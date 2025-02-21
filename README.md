@@ -10,7 +10,7 @@
 
 - [Use your own / custom SSL](docs/own-ssl.md)
 
-- [Deploy sample app](docs/deployment)
+- [Deploy sample app](docs/deployment.md)
 
 - [How to deploy using gitlab](ci-cd/gitlab/README.md)
 
@@ -19,3 +19,5 @@
 - [Secret Commands](docs/secret.md)
 
 - [Cron Commands](docs/cron.md)
+
+- [Upgrade Kubernetes](docs/upgrade.md)

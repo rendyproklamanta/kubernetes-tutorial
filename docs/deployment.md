@@ -12,8 +12,14 @@ kubectl apply -k <app-dir>
 kubectl apply -k k8s/production
 ```
 
-- Commands
+- Get Deployment
 
 ```shell
 kubectl get deployment -n <namespace>
+```
+
+- Restart Deployment
+
+```shell
+kubectl rollout restart <DEPLOYMENT_NAME> -n <namespace>
 ```
