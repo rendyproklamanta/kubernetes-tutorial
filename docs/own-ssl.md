@@ -41,6 +41,12 @@ kubectl create secret tls mydomain-tls --cert=bundle.crt --key=private.key -n <n
 kubectl create secret tls wildcard.mydomain-tls --cert=bundle.crt --key=private.key -n <namespace>
 ```
 
+- Update TLS secret
+
+```shell
+kubectl create secret tls -n <namespace> wildcard-sectigo.movinite.id-tls --cert=bundle.crt --key=private.key --dry-run=client -o yaml | kubectl apply -f -
+```
+
 - Add your secret tls to ingress.yaml
 
 ```shell
